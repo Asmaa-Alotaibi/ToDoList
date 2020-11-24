@@ -10,6 +10,8 @@ class TodoStore {
     makeAutoObservable(this, {
       fetchTasks: action,
       createTask: action,
+      updateTask: action,
+      deleteitem: action,
     });
   }
 
@@ -28,6 +30,26 @@ class TodoStore {
       this.tasks.push(res.data);
     } catch (error) {
       console.log("TodoStore -> createTask -> error", error);
+    }
+  };
+
+  updateTask = async (updatedItem) => {
+    try {
+      await axios.put(
+        `http://localhost:8000/tasks/${updatedItem.id}`,
+        updatedItem
+      );
+    } catch (error) {
+      console.log("TodoStore -> updateTask-> error", error);
+    }
+  };
+
+  deleteitem = async (itemId) => {
+    try {
+      await axios.delete(`http://localhost:8000/tasks/${itemId}`);
+      this.tasks = this.tasks.filter((item) => item.id !== itemId);
+    } catch (error) {
+      console.log("todoStore -> deleteitem -> error", error);
     }
   };
 }
