@@ -5,7 +5,7 @@ import TaskItem from "./TaskItem";
 
 const Lists = () => {
   const todayList = todoStore.todayList.map((item) => (
-    <TaskItem item={item} itemId={item.id} />
+    <TaskItem item={item} key={item.id} />
   ));
 
   return (

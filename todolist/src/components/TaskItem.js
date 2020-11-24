@@ -2,7 +2,7 @@ import React from "react";
 
 import { observer } from "mobx-react";
 
-const TaskItem = ({ item, itemId }) => {
+const TaskItem = ({ item }) => {
   return (
     <div>
       <div className="input-group mb-3">

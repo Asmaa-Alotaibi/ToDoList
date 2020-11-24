@@ -9,6 +9,7 @@ class TodoStore {
   constructor() {
     makeAutoObservable(this, {
       fetchTasks: action,
+      createTask: action,
     });
   }
 
@@ -20,7 +21,17 @@ class TodoStore {
     console.log("fetchTasks -> response", response);
     this.tasks = response.data;
   };
+
+  createTask = async (newItem) => {
+    try {
+      const res = await axios.post("http://localhost:8000/tasks", newItem);
+      this.tasks.push(res.data);
+    } catch (error) {
+      console.log("TodoStore -> createTask -> error", error);
+    }
+  };
 }
+
 const todoStore = new TodoStore();
 todoStore.fetchTasks();
 
