@@ -10,6 +10,9 @@ function App() {
         <div className="row">
           <h1>Today</h1>
         </div>
+        <p style={{ color: "#DC143C" }}>High</p>
+        <p style={{ color: "#FFDAB9" }}>Mid</p>
+        <p style={{ color: "#B0E0E6" }}>Low</p>
       </div>
       <Lists />
     </div>

@@ -11,10 +11,14 @@ const TaskItem = ({ item }) => {
 
   const handelDelete = (event) => {
     event.preventDefault();
-    item.done = !item.done; //here
+    item.done = !item.done;
     todoStore.deleteitem(item.id);
   };
-
+  const checkPriority = (item) => {
+    if (item.priority === "high") return "alert alert-danger";
+    else if (item.priority === "mid") return "alert alert-warning";
+    else return "alert alert-info";
+  };
   return (
     <div>
       <BsX className="float-right" size="2em" onClick={handelDelete} />
@@ -36,8 +40,11 @@ const TaskItem = ({ item }) => {
           placeholder={item.name}
         />
       </div>
+      <div class={checkPriority(item)} role="alert">
+        {item.description}
+      </div>
 
-      <p>{item.description}</p>
+      <hr />
     </div>
   );
 };
